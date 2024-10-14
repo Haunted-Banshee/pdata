@@ -355,18 +355,6 @@ VOID SingleProc(DWORD pid, DWORD tid)
                 stackFrame.AddrStack.Mode = AddrModeFlat;
                 stackFrame.AddrStack.Offset = context.Rsp; // Stack Pointer (SP) address
 
-                typedef BOOL(WINAPI* StackWalkEx_t)(
-                    DWORD                             MachineType,
-                    HANDLE                            hProcess,
-                    HANDLE                            hThread,
-                    LPSTACKFRAME_EX                   StackFrame,
-                    PVOID                             ContextRecord,
-                    PREAD_PROCESS_MEMORY_ROUTINE64    ReadMemoryRoutine,
-                    PFUNCTION_TABLE_ACCESS_ROUTINE64  FunctionTableAccessRoutine,
-                    PGET_MODULE_BASE_ROUTINE64        GetModuleBaseRoutine,
-                    PTRANSLATE_ADDRESS_ROUTINE64      TranslateAddress,
-                    DWORD                             Flags
-                    );
                 while (StackWalkEx(
                     IMAGE_FILE_MACHINE_AMD64,      // Architecture
                     hProcess,                      // Process handle
